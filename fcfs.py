@@ -15,6 +15,7 @@ def fcfs(inputdata):
 
     process_queue.sort(key=lambda process_queue: process_queue[1])
 
+# for Finish time
     process_queue[0].append((process_queue[0][1]+process_queue[0][2]))
     for i in range(1, n):
         if process_queue[i][1] < process_queue[i-1][3]:
@@ -23,6 +24,7 @@ def fcfs(inputdata):
         else:
             process_queue[i].append((process_queue[i][1]+process_queue[i][2]))
 
+# for Waiting time
     process_queue[0].append(0)
     for i in range(1, n):
         if process_queue[i-1][3] > process_queue[i][1]:
@@ -30,6 +32,7 @@ def fcfs(inputdata):
                                      - process_queue[i][1]))
         else:
             process_queue[i].append(0)
+
 
     for i in range(n):
         process_queue[i].append(process_queue[i][3] - process_queue[i][1])

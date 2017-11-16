@@ -52,8 +52,8 @@ def findTurnAroundTime(n, bt, wt, tat):
 
 # Function to calculate average time
 def findavgTime(at, n, bt, quantum):
-    wt = [1, 2, 3, 4]
-    tat = [1, 2, 3, 4]
+    wt = [0]*n
+    tat = [0]*n
     total_wt = 0
     total_tat = 0
 
@@ -87,7 +87,7 @@ def findavgTime(at, n, bt, quantum):
 def main():
     p = []
     at = []
-    at = []
+    burst_time = []
 
     filename = input("Enter the file to be read: ")
     # filename = 'inp.txt'
@@ -102,6 +102,14 @@ def main():
 
     for i in range(n):
         p.append(contents[i].split(' '))
+
+    print("Do you want to consider time taken in interrupts?")
+    print("1. Yes\n2. No")
+    choice = input()
+    # choice = 1
+    if choice == '1':
+        for i in p:
+            p[2] += (p[3])
 
     for i in range(len(p)):
         for j in range(i):
@@ -118,7 +126,10 @@ def main():
         quantum_array.append(quantum)
         findavgTime(at, n, burst_time, quantum)
 
-    plt.plot(quantum_array, avg_array)
+    plt.scatter(quantum_array, avg_array)
+    plt.xlabel("Quantum size (Time Slice)")
+    plt.ylabel("Average Waiting Time")
+    plt.title('Q vs AWT')
     plt.show()
 
 
